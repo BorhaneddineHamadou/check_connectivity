@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }else if(state is NotConnectedState){
             return _buildTextWidget(state.message);
           }
-          return const SizedBox();
+          return _buildTextWidget("Not this nor this");
         },
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

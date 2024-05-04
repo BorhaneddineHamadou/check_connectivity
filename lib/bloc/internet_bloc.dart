@@ -17,18 +17,18 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
       }else if(event is NotConnectedEvent){
         emit(NotConnectedState(message: "Not Connected"));
       }
-
-      _subscription = Connectivity()
-          .onConnectivityChanged
-          .listen((List<ConnectivityResult> result){
-        if(result.contains(ConnectivityResult.wifi) ||
-            result.contains(ConnectivityResult.mobile)){
-          add(ConnectedEvent());
-        }else{
-          add(NotConnectedEvent());
-        }
       });
-    });
+
+    _subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> result){
+      debugPrint(result.toString());
+      if(result.contains(ConnectivityResult.wifi) ||
+          result.contains(ConnectivityResult.mobile)){
+        add(ConnectedEvent());
+      }else{
+        add(NotConnectedEvent());
+      } });
   }
 
   @override
